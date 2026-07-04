@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rootline — The AI-native EMR for physical therapy</title>
+  <meta name="description" content="Rootline is an EMR that runs on an AI appliance inside your clinic. Documentation writes itself, billing works overnight, and patient data never leaves the building.">
+  <style>
+    :root {
+      --ink:        #141210;
+      --ink-soft:   #4A453F;
+      --ink-faint:  #8A8378;
+      --paper:      #FAF9F7;
+      --paper-deep: #F3F1ED;
+      --hairline:   #E8E4DF;
+      --card:       #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0;
+    }
+    .wordmark {
+      font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-cta {
+      font-size: 14px; font-weight: 600; text-decoration: none;
+      color: var(--paper); background: var(--ink);
+      padding: 8px 18px; border-radius: 999px;
+      transition: opacity 0.18s ease;
+    }
+    .nav-cta:hover { opacity: 0.82; }
+
+    /* ── Hero ────────────────────────────────────────── */
+    header { padding: 108px 0 96px; text-align: center; }
+    .eyebrow {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-faint);
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(38px, 6.5vw, 64px);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.08;
+      max-width: 17ch; margin: 0 auto;
+    }
+    .lede {
+      font-size: clamp(17px, 2.4vw, 21px); color: var(--ink-soft);
+      max-width: 52ch; margin: 26px auto 0;
+    }
+    .hero-ctas { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      font-size: 16px; font-weight: 600; text-decoration: none;
+      padding: 13px 28px; border-radius: 999px;
+      transition: opacity 0.18s ease, background 0.18s ease;
+    }
+    .btn-dark { background: var(--ink); color: var(--paper); }
+    .btn-dark:hover { opacity: 0.82; }
+    .btn-quiet { color: var(--ink); border: 1px solid var(--hairline); background: var(--card); }
+    .btn-quiet:hover { background: var(--paper-deep); }
+
+    /* ── Sections ────────────────────────────────────── */
+    section { padding: 88px 0; }
+    section + section { border-top: 1px solid var(--hairline); }
+    h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+      max-width: 24ch;
+    }
+    .section-lede {
+      font-size: 18px; color: var(--ink-soft);
+      max-width: 62ch; margin-top: 18px;
+    }
+    .centered { text-align: center; }
+    .centered h2, .centered .section-lede { margin-left: auto; margin-right: auto; }
+
+    /* ── Principle band ──────────────────────────────── */
+    .band { background: var(--ink); color: var(--paper); }
+    .band h2 { color: var(--paper); }
+    .band .section-lede { color: #C9C3BA; }
+    .band-points {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; margin-top: 56px; text-align: left;
+    }
+    .band-point h3 { font-size: 16px; font-weight: 650; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .band-point p { font-size: 15px; color: #B5AEA3; }
+
+    /* ── Feature grid ────────────────────────────────── */
+    .grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-top: 52px;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--hairline);
+      border-radius: 18px; padding: 26px 24px; text-align: left;
+      transition: border-color 0.18s ease;
+    }
+    .card:hover { border-color: #D5CFC7; }
+    .card h3 { font-size: 16.5px; font-weight: 650; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .card p { font-size: 14.5px; color: var(--ink-soft); }
+
+    /* ── How it works ────────────────────────────────── */
+    .steps { margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .step {
+      background: var(--paper-deep); border-radius: 18px;
+      padding: 28px 24px; text-align: left;
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 999px;
+      background: var(--ink); color: var(--paper);
+      font-size: 14px; font-weight: 700; margin-bottom: 16px;
+    }
+    .step h3 { font-size: 16.5px; font-weight: 650; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .step p { font-size: 14.5px; color: var(--ink-soft); }
+
+    /* ── Contact ─────────────────────────────────────── */
+    .contact-email {
+      display: inline-block; margin-top: 34px;
+      font-size: clamp(19px, 3vw, 26px); font-weight: 650; letter-spacing: -0.01em;
+      color: var(--ink); text-decoration: none;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 2px;
+      transition: opacity 0.18s ease;
+    }
+    .contact-email:hover { opacity: 0.7; }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 36px 0 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13.5px; color: var(--ink-faint);
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--ink-faint); text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 760px) {
+      header { padding: 72px 0 64px; }
+      section { padding: 64px 0; }
+      .grid, .steps, .band-points { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="wordmark" href="#top">Rootline</a>
+      <a class="nav-cta" href="mailto:info@oblation.tech">Get in touch</a>
+    </div>
+  </nav>
+
+  <header id="top" class="wrap">
+    <p class="eyebrow">EMR for physical therapy</p>
+    <h1>The EMR that works while you treat.</h1>
+    <p class="lede">
+      Rootline runs on an AI appliance inside your clinic. Your notes write themselves as you
+      work, billing runs overnight, and patient data never leaves the building.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-dark" href="mailto:info@oblation.tech?subject=Rootline%20demo">Request a demo</a>
+      <a class="btn btn-quiet" href="#how">How it works</a>
+    </div>
+  </header>
+
+  <section class="band">
+    <div class="wrap centered">
+      <h2>Your patients' data never leaves the building.</h2>
+      <p class="section-lede">
+        Most "AI-powered" health software sends your patients' records to someone else's cloud.
+        Rootline takes the opposite path: the AI runs on hardware in your clinic.
+      </p>
+      <div class="band-points">
+        <div class="band-point">
+          <h3>On-premise AI</h3>
+          <p>Speech recognition and clinical language models run locally on the appliance — no cloud AI processing of patient records.</p>
+        </div>
+        <div class="band-point">
+          <h3>Private by architecture</h3>
+          <p>The system is reachable only over your clinic's secure private network. There is no public login page to attack.</p>
+        </div>
+        <div class="band-point">
+          <h3>Audited nightly</h3>
+          <p>A built-in HIPAA sentinel scans every access log each night and flags anything that doesn't look like normal work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap centered">
+      <h2>Everything a PT clinic runs on, in one system.</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Documentation that writes itself</h3>
+          <p>Dictate or just talk with your patient — the ambient scribe drafts the SOAP note as the visit happens. You review and sign.</p>
+        </div>
+        <div class="card">
+          <h3>Denials prevented, not appealed</h3>
+          <p>Every claim is checked against payer rules before submission. When a denial does happen, an appeal letter is drafted for you.</p>
+        </div>
+        <div class="card">
+          <h3>A billing agent that works nights</h3>
+          <p>Overnight, the appliance checks claim statuses, identifies denials, drafts appeals, and has a digest waiting in the morning.</p>
+        </div>
+        <div class="card">
+          <h3>Scheduling &amp; front desk</h3>
+          <p>Appointments, recurring visits, insurance eligibility checks, and authorization tracking in one place.</p>
+        </div>
+        <div class="card">
+          <h3>Claims &amp; clearinghouse</h3>
+          <p>Electronic claims and real-time eligibility through the Office Ally clearinghouse, with CPT coding suggestions from your notes.</p>
+        </div>
+        <div class="card">
+          <h3>HIPAA Sentinel</h3>
+          <p>Nightly rule-based audit scans with on-box AI triage. Compliance findings appear in a dashboard; real concerns alert you immediately.</p>
+        </div>
+        <div class="card">
+          <h3>Home health &amp; car mode</h3>
+          <p>A drive-safe mobile flow for home visits: patient briefing on the way, voice documentation after, hands mostly on the wheel.</p>
+        </div>
+        <div class="card">
+          <h3>Patient engagement</h3>
+          <p>Home exercise adherence, attendance patterns, and outreach — so patients who are drifting get attention before they drop out.</p>
+        </div>
+        <div class="card">
+          <h3>Standards-based</h3>
+          <p>HL7 FHIR interoperability, so your data is portable and connectable — not locked in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap centered">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <h3>An appliance arrives</h3>
+          <p>A pre-configured Rootline appliance ships to your clinic. Plug it in and it joins your clinic's private network.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <h3>Your team signs in</h3>
+          <p>Therapists, front desk, and billing each get role-based access from any device on the clinic network.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <h3>One flat monthly rate</h3>
+          <p>Hardware, software, and the AI are one predictable subscription per clinic — no per-note AI fees, no usage surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap centered">
+      <h2>See it on your own patients' workflow.</h2>
+      <p class="section-lede">
+        Rootline is currently working with a small number of clinics. If you'd like a demo
+        or want to talk through whether it fits your practice, write to us.
+      </p>
+      <a class="contact-email" href="mailto:info@oblation.tech?subject=Rootline%20demo">info@oblation.tech</a>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <footer>
+      <span>© 2026 Rootline</span>
+      <a href="mailto:info@oblation.tech">info@oblation.tech</a>
+    </footer>
+  </div>
+
+</body>
+</html>
